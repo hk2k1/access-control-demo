@@ -3,6 +3,8 @@ import { isAdmin } from "../access/isAdmin";
 import { isAdminOrHasSiteAccess } from "../access/isAdminOrHasSiteAccess";
 import { isLoggedIn } from "../access/isLoggedIn";
 
+import CustomUIField from "./ui/CustomUIField"
+
 export const Media: CollectionConfig = {
   slug: 'media',
   upload: true,
@@ -32,6 +34,15 @@ export const Media: CollectionConfig = {
       defaultValue: ({ user }) => {
         if (!user.roles.includes('admin') && user.sites?.[0]) {
           return user.sites[0];
+        }
+      }
+    },
+    {
+      name: 'customUI',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: CustomUIField,
         }
       }
     }

@@ -6,10 +6,23 @@ import { Media } from './collections/Media';
 import { ContactRequests } from './collections/ContactRequests';
 import { Pages } from './collections/Pages';
 import { seed } from './seed';
+import { Projects } from './collections/Projects';
+import { Violations } from './collections/Violations';
 
 export default buildConfig({
   admin: {
     user: Users.slug,
+    webpack: (config: any) => ({
+      ...config,
+      resolve: {
+        ...config.resolve,
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        // alias: {
+        //   ...config.resolve.alias,
+        //   fs: mockModulePath,
+        // }
+      }
+    })
   },
   collections: [
     ContactRequests,
@@ -17,6 +30,8 @@ export default buildConfig({
     Pages,
     Sites,
     Users,
+    Projects,
+    Violations,
   ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

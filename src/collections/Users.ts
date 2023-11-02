@@ -11,6 +11,7 @@ export const Users: CollectionConfig = {
     // keeps performance fast.
     depth: 0,
   },
+  // auth: true,
   admin: {
     useAsTitle: 'email',
   },
